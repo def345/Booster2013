@@ -1,0 +1,26 @@
+﻿@model List<string>
+
+@{
+    ViewBag.Title = "ClickJacking";
+            //Layout = "_Layout";
+}
+
+<h2>ClickJacking</h2>
+<div>
+    <p>
+        @Html.ActionLink("Clicking on this link", "Submit") will make something mildly unpleasant happen.
+    </p>
+    <p>
+        The link is located at 530,185 in FF.
+    </p>
+</div>
+<hr />
+<div>
+    <h3>Recent clicks</h3>
+    <ol>
+        @foreach (var val in Model)
+        {
+            <li>@val</li>
+        }
+    </ol>
+</div>
