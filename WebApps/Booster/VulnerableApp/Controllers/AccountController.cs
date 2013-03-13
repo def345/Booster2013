@@ -14,7 +14,6 @@ using VulnerableApp.Models;
 namespace VulnerableApp.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //
@@ -35,8 +34,9 @@ namespace VulnerableApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            if (ModelState.IsValid)
             {
+                FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
                 return RedirectToLocal(returnUrl);
             }
 
@@ -52,7 +52,7 @@ namespace VulnerableApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            WebSecurity.Logout();
+            FormsAuthentication.SignOut();
 
             return RedirectToAction("Index", "Home");
         }
