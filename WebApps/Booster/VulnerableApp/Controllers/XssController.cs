@@ -13,8 +13,9 @@ namespace VulnerableApp.Controllers
         // GET: /Xss/
         [ValidateInput(false)]
         [XXssProtection(Policy = XXssProtectionPolicy.FilterDisabled)]
-        [Csp(XContentSecurityPolicyHeader = true)]
-        [CspDefaultSrc(Self = Source.Enable)]
+        //[Csp(XContentSecurityPolicyHeader = true)]
+        //[CspDefaultSrc(Self = Source.Enable)]
+        //[CspReportUri(EnableBuiltinHandler = true)]
         public ActionResult Index(string input)
         {
             ViewBag.Input = new HtmlString(input);

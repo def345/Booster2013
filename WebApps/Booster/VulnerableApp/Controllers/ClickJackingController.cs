@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using NWebsec.Mvc.HttpHeaders;
 using VulnerableApp.Helpers;
 
 namespace VulnerableApp.Controllers
@@ -10,10 +11,12 @@ namespace VulnerableApp.Controllers
         //
         // GET: /ClickJacking/
 
+        //[XFrameOptions]
         public ActionResult Index()
         {
             var list = new List<string>();
             list.AddRange(SessionHelper.GetSessionValues());
+            list.Reverse();
             return View(list);
         }
 

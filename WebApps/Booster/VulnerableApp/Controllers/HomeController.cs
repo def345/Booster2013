@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 
 namespace VulnerableApp.Controllers
@@ -10,6 +7,7 @@ namespace VulnerableApp.Controllers
     {
         public ActionResult Index()
         {
+            Response.Cookies.Add(new HttpCookie("Booster2013") { HttpOnly = false, Secure = false });
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
             return View();
